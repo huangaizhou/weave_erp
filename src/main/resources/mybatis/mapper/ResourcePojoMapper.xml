@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.haz.mapper.ResourcePojoMapper" >
+  <resultMap id="BaseResultMap" type="com.haz.pojo.ResourcePojo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="resource_code" property="resourceCode" jdbcType="VARCHAR" />
+    <result column="resource_name" property="resourceName" jdbcType="VARCHAR" />
+    <result column="resource_type" property="resourceType" jdbcType="CHAR" />
+    <result column="parent_id" property="parentId" jdbcType="INTEGER" />
+    <result column="orders" property="orders" jdbcType="INTEGER" />
+    <result column="state" property="state" jdbcType="CHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, resource_code, resource_name, resource_type, parent_id, orders, state, create_time, 
+    update_time
+  </sql>
+</mapper>
