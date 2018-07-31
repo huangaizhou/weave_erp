@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.assertj.core.internal.Lists;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.github.pagehelper.PageHelper;
 import com.haz.base.BaseTest;
 import com.haz.pojo.UserPojo;
 import com.haz.service.UserService;
@@ -29,6 +29,13 @@ public class UserServiceTest extends BaseTest {
 		list.add(entity);
 		list.add(entity2);
 		userService.save(list);
+	}
+
+	@Test
+	public void testFindByPage() {
+		PageHelper.startPage(1, 10);
+		List<UserPojo> list = userService.select(null);
+		System.out.println(list.size());
 	}
 
 }
