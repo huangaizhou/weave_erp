@@ -15,6 +15,7 @@ import com.haz.service.LoginService;
 import com.haz.service.RedisService;
 import com.haz.service.UserService;
 import com.haz.util.AssertionUtil;
+import com.haz.util.constant.ParamUtil;
 import com.haz.util.exception.ServiceExceptionEnum;
 
 @Service
@@ -44,7 +45,7 @@ public class LoginServiceImpl implements LoginService {
 		redisService.setex(token, text, RANDOM_CODE_EXPIRE_TIME, TimeUnit.SECONDS);
 
 		Map<String, Object> map = Maps.newHashMap();
-		map.put("token", token);
+		map.put(ParamUtil.TOKEN, token);
 		map.put("expire", RANDOM_CODE_EXPIRE_TIME);
 		return map;
 	}
