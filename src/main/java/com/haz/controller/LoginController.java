@@ -9,12 +9,16 @@ import javax.imageio.ImageIO;
 import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.code.kaptcha.Producer;
+import com.haz.bean.UserBean;
 import com.haz.service.LoginService;
+import com.haz.util.AssertionUtil;
 import com.haz.util.base.BaseController;
 import com.haz.util.base.ServerResponse;
+import com.haz.util.exception.ServiceExceptionEnum;
 
 /**
  * 登录操作
@@ -49,5 +53,13 @@ public class LoginController extends BaseController {
 		// 对字节数组Base64编码
 		map.put("img", new Base64().encode(outputStream.toByteArray()));
 		return ServerResponse.createBySuccess(map);
+	}
+
+	@PostMapping("/login")
+	@SuppressWarnings("rawtypes")
+	public ServerResponse login(@RequestBody UserBean userBean) {
+		AssertionUtil.bitchNotNull(ServiceExceptionEnum.PARAM_ERROR, userBean.getUserName(), userBean.getPassword(),
+				userBean.getRandomCode());
+		return ServerResponse.createBySuccess();
 	}
 }
