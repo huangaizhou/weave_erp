@@ -10,7 +10,13 @@ import lombok.Setter;
 @Setter
 @Getter
 public abstract class BaseRequest {
-
-	private String token;// 令牌
+	/**
+	 * 用户id
+	 */
+	private Integer userId;
+	/**
+	 * 令牌
+	 */
+	private String token;
 
 }
