@@ -66,7 +66,9 @@ public class LoginServiceImpl implements LoginService {
 		// 验证密码
 		AssertionUtil.isTrue(StringUtils.equals(po.getPassword(), userBean.getPassword()),
 				ServiceExceptionEnum.PASSWORD_ERROR);
-
+		// 验证账号状态
+		AssertionUtil.isTrue(StringUtils.equals(ParamUtil.State.ENABLE, po.getState()),
+				ServiceExceptionEnum.ACCOUNT_DISABLE);
 		// 登录成功操作
 		// 用户信息缓存进redis
 		redisService.setex(String.format("%s-%s", po.getId(), userBean.getToken()), userBean.getUserName(),

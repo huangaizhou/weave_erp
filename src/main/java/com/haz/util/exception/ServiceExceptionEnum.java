@@ -17,6 +17,7 @@ public enum ServiceExceptionEnum {
 	RANDOM_CODE_ERROR("0003","验证码不正确"), 
 	USERNAME_NOT_EXIST("0004","用户名不存在"),
 	PASSWORD_ERROR("0005","密码错误"), 
+	ACCOUNT_DISABLE("0006","账号已被禁用"), 
 	SYSTEM_ERROR("9999", "系统异常"), 
 	;
 
