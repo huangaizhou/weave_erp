@@ -6,6 +6,7 @@ import java.util.List;
 import org.assertj.core.util.Lists;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
 
 import com.github.pagehelper.PageHelper;
 import com.haz.base.BaseTest;
@@ -19,6 +20,9 @@ public class UserServiceTest extends BaseTest {
 
 	@Autowired
 	private UserService userService;
+
+	@Autowired
+	private StringRedisTemplate stringRedisTemplate;
 
 	@Test
 	public void testSave() {
@@ -39,6 +43,11 @@ public class UserServiceTest extends BaseTest {
 		PageHelper.startPage(1, 10);
 		List<UserPojo> list = userService.select(null);
 		log.info("size:{}", list.size());
+	}
+
+	@Test
+	public void testRedis() {
+		stringRedisTemplate.opsForValue().get("test");
 	}
 
 }
