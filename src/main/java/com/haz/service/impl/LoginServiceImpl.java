@@ -50,7 +50,7 @@ public class LoginServiceImpl implements LoginService {
 	}
 
 	@Override
-	public UserBean login(UserBean userBean) {
+	public Integer login(UserBean userBean) {
 		// 验证token
 		String randomCode = redisService.get(userBean.getToken());
 		AssertionUtil.isNotEmpty(randomCode, ServiceExceptionEnum.TOKEN_ERROR);
@@ -71,8 +71,7 @@ public class LoginServiceImpl implements LoginService {
 		redisService.setex(String.format("%s-%s", po.getId(), userBean.getToken()), userBean.getUserName(),
 				USER_EXPIRE_TIME, TimeUnit.SECONDS);
 
-		userBean.setUserId(po.getId());
-		return userBean;
+		return po.getId();
 	}
 
 }

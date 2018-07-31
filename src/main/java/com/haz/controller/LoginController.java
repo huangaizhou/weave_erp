@@ -56,10 +56,10 @@ public class LoginController extends BaseController {
 	}
 
 	@PostMapping("/login")
-	public ServerResponse<UserBean> login(@RequestBody UserBean userBean) {
+	public ServerResponse<Integer> login(@RequestBody UserBean userBean) {
 		AssertionUtil.bitchNotNull(ServiceExceptionEnum.PARAM_ERROR, userBean.getToken(), userBean.getUserName(),
 				userBean.getPassword(), userBean.getRandomCode());
-		userBean = loginService.login(userBean);
-		return ServerResponse.createBySuccess(userBean);
+		Integer userId = loginService.login(userBean);
+		return ServerResponse.createBySuccess(userId);
 	}
 }

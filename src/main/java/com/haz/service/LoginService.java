@@ -20,6 +20,6 @@ public interface LoginService {
 	 * @param userBean
 	 * @return
 	 */
-	UserBean login(UserBean userBean);
+	Integer login(UserBean userBean);
 
 }
