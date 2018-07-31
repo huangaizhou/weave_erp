@@ -2,12 +2,14 @@ package com.haz.bean;
 
 import java.util.Date;
 
+import com.haz.util.base.BaseRequest;
+
 import lombok.Getter;
 import lombok.Setter;
 
 @Setter
 @Getter
-public class UserBean {
+public class UserBean extends BaseRequest {
 	private Integer id;
 
 	/**
@@ -33,4 +35,9 @@ public class UserBean {
 	private Date createTime;
 
 	private Date updateTime;
+
+	/**
+	 * 验证码
+	 */
+	private String randomCode;
 }

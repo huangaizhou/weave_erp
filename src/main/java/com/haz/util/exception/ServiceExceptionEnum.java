@@ -12,7 +12,8 @@ public enum ServiceExceptionEnum {
 	 * 通用异常
 	 */
 	SUCCESS("0000", "成功,系统处理正常"),
-	SYSTEM_ERROR("9999", "系统异常"),
+	PARAM_ERROR("1001","参数异常"),
+	SYSTEM_ERROR("9999", "系统异常"), 
 	;
 
 	private String code;
