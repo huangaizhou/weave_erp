@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.google.code.kaptcha.Producer;
 import com.haz.service.LoginService;
 import com.haz.util.base.BaseController;
+import com.haz.util.base.ServerResponse;
 
 /**
  * 登录操作
@@ -36,7 +37,7 @@ public class LoginController extends BaseController {
 	 * @throws Exception
 	 */
 	@PostMapping(value = "/getCaptcha")
-	public Map<String, Object> getCaptcha() throws Exception {
+	public ServerResponse<Map<String, Object>> getCaptcha() throws Exception {
 		// 生成文字验证码
 		String text = producer.createText();
 		// 生成图片验证码
@@ -47,6 +48,6 @@ public class LoginController extends BaseController {
 		Map<String, Object> map = loginService.createToken(text);
 		// 对字节数组Base64编码
 		map.put("img", new Base64().encode(outputStream.toByteArray()));
-		return map;
+		return ServerResponse.createBySuccess(map);
 	}
 }
