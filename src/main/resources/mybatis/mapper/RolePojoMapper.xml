@@ -3,13 +3,12 @@
 <mapper namespace="com.haz.mapper.RolePojoMapper" >
   <resultMap id="BaseResultMap" type="com.haz.pojo.RolePojo" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="role_code" property="roleCode" jdbcType="VARCHAR" />
     <result column="role_name" property="roleName" jdbcType="VARCHAR" />
     <result column="state" property="state" jdbcType="CHAR" />
     <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
     <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, role_code, role_name, state, create_time, update_time
+    id, role_name, state, create_time, update_time
   </sql>
 </mapper>
