@@ -1,4 +1,6 @@
 package com.haz.mapper;
 
-public interface ResourcePojoMapper {
+import com.haz.util.base.BaseMapper;
+
+public interface ResourcePojoMapper extends BaseMapper<ResourcePojoMapper> {
 }

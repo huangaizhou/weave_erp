@@ -1,4 +1,6 @@
 package com.haz.mapper;
 
-public interface RolePojoMapper {
+import com.haz.util.base.BaseMapper;
+
+public interface RolePojoMapper extends BaseMapper<RolePojoMapper> {
 }
