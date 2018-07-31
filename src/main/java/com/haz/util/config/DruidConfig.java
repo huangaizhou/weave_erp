@@ -14,7 +14,7 @@ import com.alibaba.druid.support.http.WebStatFilter;
  * @author aizhou.huang
  */
 @Configuration
-public class DruidConfiguration {
+public class DruidConfig {
 
 	/**
 	 * 配置监控服务器
