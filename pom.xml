@@ -63,7 +63,7 @@
             <version>1.1.5</version>
         </dependency>
         
-		<!-- redis 
+		<!-- redis -->
 		<dependency>
             <groupId>redis.clients</groupId>
             <artifactId>jedis</artifactId>
@@ -72,7 +72,6 @@
 		    <groupId>org.springframework.boot</groupId>
 		    <artifactId>spring-boot-starter-data-redis</artifactId>
 		</dependency>
-		-->
 		
 		<!--pagehelper-->
         <dependency>
@@ -92,20 +91,6 @@
             <artifactId>lombok</artifactId>
         </dependency>
         
-        <!-- 
-        <dependency>
-		    <groupId>javax.persistence</groupId>
-		    <artifactId>persistence-api</artifactId>
-		    <version>1.0</version>
-		</dependency>
-		-->
-		
-		<!--  
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-        </dependency>
-        -->
 	</dependencies>
 
 	<build>
