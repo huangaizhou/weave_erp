@@ -15,7 +15,7 @@ public class ServiceException extends RuntimeException {
 
 	private static final long serialVersionUID = 1L;
 
-	private ServiceExceptionEnum exceptionEnum;
+	private String code;
 
 	private String message;
 
@@ -25,12 +25,13 @@ public class ServiceException extends RuntimeException {
 	 * @param code
 	 */
 	public ServiceException(ServiceExceptionEnum exceptionEnum) {
-		super(exceptionEnum.name());
-		this.exceptionEnum = exceptionEnum;
+		this.code = exceptionEnum.getCode();
+		this.message = exceptionEnum.getMessage();
 	}
 
 	public ServiceException(String message) {
-		super(message);
+		this.code = ServiceExceptionEnum.SYSTEM_ERROR.getCode();
 		this.message = message;
 	}
+
 }
