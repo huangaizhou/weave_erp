@@ -47,7 +47,8 @@ public class UserServiceTest extends BaseTest {
 
 	@Test
 	public void testRedis() {
-		stringRedisTemplate.opsForValue().get("test");
+		String value = stringRedisTemplate.opsForValue().get("test");
+		log.info("value:{}", value);
 	}
 
 }

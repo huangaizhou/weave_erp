@@ -1,34 +1,34 @@
 package com.haz.util.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.cache.RedisCacheManager;
-import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
+import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.serializer.StringRedisSerializer;
+import org.springframework.data.redis.core.StringRedisTemplate;
 
 @Configuration
+@EnableCaching
 public class RedisConfig {
-	@Autowired
-	private JedisConnectionFactory jedisConnectionFactory;
-
 	@Bean
-	public RedisCacheManager cacheManager() {
-		RedisCacheManager redisCacheManager = new RedisCacheManager(redisTemplate());
-		return redisCacheManager;
+	public CacheManager cacheManager(RedisTemplate<?, ?> redisTemplate) {
+		CacheManager cacheManager = new RedisCacheManager(redisTemplate);
+		return cacheManager;
 	}
 
-	@SuppressWarnings("rawtypes")
-	private RedisTemplate redisTemplate() {
-		RedisTemplate<Object, Object> redisTemplate = new RedisTemplate<>();
-		redisTemplate.setConnectionFactory(jedisConnectionFactory);
-		// 开启事务
-		redisTemplate.setEnableTransactionSupport(true);
-		// 使用string序列化缓存键
-		StringRedisSerializer stringRedisSerializer = new StringRedisSerializer();
-		redisTemplate.setKeySerializer(stringRedisSerializer);
-		redisTemplate.setHashKeySerializer(stringRedisSerializer);
+	@Bean
+	public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory factory) {
+		RedisTemplate<String, Object> redisTemplate = new RedisTemplate<String, Object>();
+		redisTemplate.setConnectionFactory(factory);
 		return redisTemplate;
+	}
+
+	@Bean
+	public StringRedisTemplate stringRedisTemplate(RedisConnectionFactory factory) {
+		StringRedisTemplate stringRedisTemplate = new StringRedisTemplate();
+		stringRedisTemplate.setConnectionFactory(factory);
+		return stringRedisTemplate;
 	}
 }
