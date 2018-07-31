@@ -1,9 +1,9 @@
 package com.haz;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.assertj.core.util.Lists;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -12,6 +12,9 @@ import com.haz.base.BaseTest;
 import com.haz.pojo.UserPojo;
 import com.haz.service.UserService;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public class UserServiceTest extends BaseTest {
 
 	@Autowired
@@ -22,12 +25,12 @@ public class UserServiceTest extends BaseTest {
 		UserPojo entity = new UserPojo();
 		entity.setUserName("2222");
 		entity.setCreateTime(new Date());
+
 		UserPojo entity2 = new UserPojo();
 		entity2.setUserName("3333");
-		entity.setCreateTime(new Date());
-		List<UserPojo> list = new ArrayList<UserPojo>();
-		list.add(entity);
-		list.add(entity2);
+		entity2.setCreateTime(new Date());
+
+		List<UserPojo> list = Lists.newArrayList(entity, entity2);
 		userService.save(list);
 	}
 
@@ -35,7 +38,7 @@ public class UserServiceTest extends BaseTest {
 	public void testFindByPage() {
 		PageHelper.startPage(1, 10);
 		List<UserPojo> list = userService.select(null);
-		System.out.println(list.size());
+		log.info("size:{}", list.size());
 	}
 
 }
